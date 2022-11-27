@@ -97,11 +97,10 @@ if DB_IS_AVAILABLE and POSTGRES_READY:
             "USER": DB_USERNAME,
             "PASSWORD": DB_PASSWORD,
             "PORT": DB_PORT,
-            "HOST": DB_PORT,
+            "HOST": DB_HOST,
         }
     }
-
-print(DATABASES)
+    print(DATABASES)
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -144,3 +143,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+print(os.environ.get("DJANGO_SUPERUSER_USERNAME"))
