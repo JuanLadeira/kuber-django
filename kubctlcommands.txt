@@ -40,3 +40,6 @@ kubectl get secret <secret-name> -o YAML
 ======================================================================
 comando para deletar secret
 kubectl delete secret <secret-name>
+=======================================================================
+comando para ver detavelhes da serviceaccount (serve para encontrar a configuração da secrets que precisa ser inserida no .yaml do projeto)
+kubectl get serviceaccount default -o YAML

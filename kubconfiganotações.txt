@@ -5,7 +5,7 @@ Ou sejam, as configurações do .kube não devem ser publicas.
 
 ================================ WINDOWNS ============================================
 Comando para declarar variavel de ambiente do KUBECONFIG no windowns
-$Env:KUBECONFIG="$HOME\Downloads\k8s-django-kubeconfig.yaml" 
+$Env:KUBECONFIG="$HOME\Downloads\k8s-django-kubeconfig.y aml"
 
 Onde a string declarada deve ser o path do arquivo yaml baixado na plataforma da digitalocean após ter 
 criado o kubernets cluster.

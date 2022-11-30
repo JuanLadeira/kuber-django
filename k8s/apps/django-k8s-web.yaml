@@ -1,38 +1,49 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: iac-python-deployment 
+  name: django-k8s-web-deployment 
+  labels:
+    app: django-k8s-web-deployment
 spec:
-  replicas: 3 
+  replicas: 3
   selector:
     matchLabels:
-      app: iac-python-deployment
+      app: django-k8s-web-deployment
   template:
     metadata:
-      labels: 
-        app: iac-python-deployment
+      labels:
+        app: django-k8s-web-deployment
     spec:
       containers:
-        - name: iac-python
-          image: codingforentrepreneurs/iac-python:latest
-          env:
-            - name: PORT
-              value: "8181"
-          ports:
-            - containerPort: 80
+      - name: django-k8s-web
+        image: registry.digitalocean.com/k8s-django/django-k8s-web:latest
+        imagePullPolicy: Always
+        envFrom:
+          - secretRef:
+              name: django-k8s-web-prod-env
+        env:
+          - name: PORT
+            value: "8001"
+        ports:
+        - containerPort: 8001
+      imagePullSecrets:
+        - name: k8s-django
+
+
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: iac-python-service
+  name: django-k8s-web-service
 spec:
   type: LoadBalancer
   ports:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: 8181
+      targetPort: 8001
   selector:
-    app: iac-python-deployment
+    app: django-k8s-web-deployment 
