@@ -1,4 +1,4 @@
-name: Django CI
+name: Django CI & Postgres test
 
 on:
   workflow_call:
@@ -9,7 +9,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  django_test:
     runs-on: ubuntu-latest
     defaults:
       run:
