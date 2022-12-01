@@ -22,4 +22,21 @@ jobs:
  
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+       uses: actions/checkout@v3
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        tokens: ${{ secret.DO_API_TOKEN_KEY }}
+    - name: Login to Do container registry with short-lived credencials
+      run: doctl regestry login --expire-seconds 1200
+    - name: build container image
+      working-directory: ./web
+      run:
+        docker build -f Dockerfile \ 
+           -t registry.digitalocean.com/k8s-django/django-k8s-web:latest \
+           -t registry.digitalocean.com/k8s-django/django-k8s-web:${ GITHUB_SHA::7 } \
+            . 
+    - name: push image to container registry
+      run:
+        docker push registry.digitalocean.com/k8s-django/django-k8s-web --all-tags
