@@ -27,7 +27,7 @@ jobs:
     - name: Install doctl
       uses: digitalocean/action-doctl@v2
       with:
-        tokens: ${{ secret.DO_API_TOKEN_KEY }}
+        tokens: ${{ secrets.DO_API_TOKEN_KEY }}
     - name: Login to Do container registry with short-lived credencials
       run: doctl regestry login --expire-seconds 1200
     - name: build container image
