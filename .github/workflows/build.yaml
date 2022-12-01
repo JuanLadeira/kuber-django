@@ -35,8 +35,8 @@ jobs:
       run:
         docker build -f Dockerfile \ 
            -t registry.digitalocean.com/k8s-django/django-k8s-web:latest \
-           -t registry.digitalocean.com/k8s-django/django-k8s-web:${ GITHUB_SHA::7 } \
+           -t registry.digitalocean.com/k8s-django/django-k8s-web:${GITHUB_SHA::7} \
             . 
-    - name: push image to container registry
+    - name: push image to container registry.
       run:
         docker push registry.digitalocean.com/k8s-django/django-k8s-web --all-tags
