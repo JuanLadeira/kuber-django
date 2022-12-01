@@ -28,7 +28,7 @@ jobs:
       uses: digitalocean/action-doctl@v2
       with:
         token: ${{ secrets.DO_API_TOKEN_KEY }}
-    - name: Login to Do container registry with short-lived credencials
+    - name: Login to Digital ocean container registry with short-lived credencials
       run: doctl regestry login --expire-seconds 1200
     - name: build container image
       working-directory: ./web
