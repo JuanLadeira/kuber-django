@@ -10,7 +10,7 @@ on:
 
 jobs:
   test_django:
-    uses: JuanLadeira/kuber-django/.github/workflows/test_django.yaml@main
+    uses: JuanLadeira/kuber-django/actions/workflows/test_django.yaml@main
   docker_build:
     runs-on: ubuntu-latest
     defaults:
