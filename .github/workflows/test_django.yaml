@@ -3,10 +3,6 @@ name: Django CI & Postgres test
 on:
   workflow_call:
   workflow_dispatch:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
   django_test:

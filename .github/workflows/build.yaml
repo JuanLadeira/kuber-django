@@ -1,0 +1,24 @@
+name: Build Docker Container and push to DO Registry
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  test_django:
+    uses: JuanLadeira/kuber-django/.github/workflows/test_django.yaml@main
+  docker_build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./web
+    env:
+      DJANGO_SECRET_KEY: ACasyeh--f3yERcSsNW4YhoaWJ-ChNMuJoLGAx2CiuQ
+ 
+
+    steps:
+    - uses: actions/checkout@v3
