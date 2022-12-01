@@ -9,10 +9,11 @@ on:
     branches: [ "master" ]
 
 jobs:
-  test_django:
+  test_django_job:
     uses: JuanLadeira/kuber-django/.github/workflows/test_django.yaml@master
-  docker_build:
+  docker_build_job:
     runs-on: ubuntu-latest
+    needs: [test_django_job]
     defaults:
       run:
         working-directory: ./web
