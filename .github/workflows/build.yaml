@@ -18,7 +18,7 @@ jobs:
       run:
         working-directory: ./web
     env:
-      DJANGO_SECRET_KEY: ACasyeh--f3yERcSsNW4YhoaWJ-ChNMuJoLGAx2CiuQ
+      DJANGO_SECRET_KEY: {{ secrets.DJANGO_SECRET_KEY }}
       CLUSTER_NAME: k8s-django
       IMAGE_NAME: django-k8s-web
       CONTAINER_NAME: django-k8s-web
@@ -52,7 +52,7 @@ jobs:
         REGION=TEXAS
         DJANGO_SUPERUSER_USERNAME={{ secrets.DJANGO_SUPERUSER_USERNAME }}
         DJANGO_SUPERUSER_PASSWORD={{ secrets.DJANGO_SUPERUSER_PASSWORD }}
-        DJANGO_SUPERUSER_EMAIL= {{ secrets.DJANGO_SUPERUSER_EMAIL }}
+        DJANGO_SUPERUSER_EMAIL={{ secrets.DJANGO_SUPERUSER_EMAIL }}
         DJANGO_SECRET_KEY={{ secrets.DJANGO_SECRET_KEY }}
         POSTGRES_DB={{ secrets.POSTGRES_DB }}
         POSTGRES_PASSWORD={{ secrets.POSTGRES_PASSWORD }}
