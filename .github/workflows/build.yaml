@@ -37,10 +37,7 @@ jobs:
     - name: build container image
       working-directory: ./web
       run: |
-        docker build -f Dockerfile \
-          -t registry.digitalocean.com/${{env.CLUSTER_NAME}}/${{env.IMAGE_NAME}}:latest \
-          -t registry.digitalocean.com/${{env.CLUSTER_NAME}}/${{env.IMAGE_NAME}}:${GITHUB_SHA::7} \ 
-         . 
+        docker build -f Dockerfile -t registry.digitalocean.com/${{env.CLUSTER_NAME}}/${{env.IMAGE_NAME}}:latest -t registry.digitalocean.com/${{env.CLUSTER_NAME}}/${{env.IMAGE_NAME}}:${GITHUB_SHA::7} . 
     - name: push image to container registry.
       run:
         docker push registry.digitalocean.com/${{env.CLUSTER_NAME}}/${{env.IMAGE_NAME}} --all-tags
