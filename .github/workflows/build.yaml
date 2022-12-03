@@ -59,8 +59,8 @@ jobs:
         POSTGRES_HOST={{ secrets.POSTGRES_HOST }}
         POSTGRES_PORT={{ secrets.POSTGRES_PORT }}
         EOF
-        kubectl delete ${{env.ENV_SECRETS}}
-        kubectl create secret generic ${{env.ENV_SECRETS}} --from-env-file=web/.env.prod
+        kubectl delete secret ${{env.ENV_SECRETS}}
+        kubectl create secret generic ${{env.ENV_SECRETS}} --from-env-file= web/.env.prod
 
     - name: Update Deployment image
       run: |
