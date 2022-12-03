@@ -27,7 +27,7 @@ jobs:
       
  
     steps:
-    - name: Checkout code
+    - name: Checkout codes
       uses: actions/checkout@v3
     - name: Install doctl
       uses: digitalocean/action-doctl@v2
