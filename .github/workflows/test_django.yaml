@@ -11,7 +11,7 @@ jobs:
       run:
         working-directory: ./web
     env:
-      DJANGO_SECRET_KEY: ACasyeh--f3yERcSsNW4YhoaWJ-ChNMuJoLGAx2CiuQ
+      DJANGO_SECRET_KEY: {{ secrets.DJANGO_SECRET_KEY }}
       POSTGRES_DB: dockerdc
       POSTGRES_PASSWORD: password
       POSTGRES_USER: kub
