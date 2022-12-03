@@ -47,7 +47,7 @@ jobs:
     - name: Update Deployment secrets
       working-directory: ./web
       run: |
-          cat << \EOF > web/.env.prod
+          cat << EOF >> .env.prod
           AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
           DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}
@@ -62,7 +62,7 @@ jobs:
           POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}
           EOF
           kubectl delete secret django-k8s-web-prod-env
-          kubectl create secret generic django-k8s-web-prod-env --from-env-file=web/.env.prod
+          kubectl create secret generic django-k8s-web-prod-env --from-env-file=.env.prod
 
     - name: Update Deployment image
       run: |
