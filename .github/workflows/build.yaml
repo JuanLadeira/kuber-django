@@ -23,6 +23,7 @@ jobs:
       IMAGE_NAME: django-k8s-web
       CONTAINER_NAME: django-k8s-web
       DEPLOYMENT_NAME: django-k8s-web-deployment
+      ENV_SECRETS: django-k8s-web-prod-env
       
  
     steps:
@@ -44,6 +45,24 @@ jobs:
     - name: K8s cluster kubeconfig file with/ short-lived creds
       run: | 
         doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{env.CLUSTER_NAME}}
+    - name: Update Deployment secrets
+      run: |
+        cat << EOF >> web/.env.prod
+        ENV_ALLOWED_HOSTS=143.244.208.107
+        REGION=TEXAS
+        DJANGO_SUPERUSER_USERNAME={{ secrets.DJANGO_SUPERUSER_USERNAME }}
+        DJANGO_SUPERUSER_PASSWORD={{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+        DJANGO_SUPERUSER_EMAIL= {{ secrets.DJANGO_SUPERUSER_EMAIL }}
+        DJANGO_SECRET_KEY={{ secrets.DJANGO_SECRET_KEY }}
+        POSTGRES_DB={{ secrets.POSTGRES_DB }}
+        POSTGRES_PASSWORD={{ secrets.POSTGRES_PASSWORD }}
+        POSTGRES_USER={{ secrets.POSTGRES_USER }}
+        POSTGRES_HOST={{ secrets.POSTGRES_HOST }}
+        POSTGRES_PORT={{ secrets.POSTGRES_PORT }}
+        EOF
+        kubectl delete ${{env.ENV_SECRETS}}
+        kubectl create secret generic ${{env.ENV_SECRETS}} --from-env-file=web/.env.prod
+
     - name: Update Deployment image
       run: |
         kubectl set image deployment/${{env.DEPLOYMENT_NAME}} ${{env.CONTAINER_NAME}}=registry.digitalocean.com/${{env.CLUSTER_NAME}}/${{env.IMAGE_NAME}}:${GITHUB_SHA::7}
