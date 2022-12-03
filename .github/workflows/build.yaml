@@ -45,6 +45,7 @@ jobs:
       run: | 
         doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{env.CLUSTER_NAME}}
     - name: Update Deployment secrets
+      working-directory: ./web
       run: |
           cat << EOF >> web/.env.prod
           AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
