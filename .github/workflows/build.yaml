@@ -53,4 +53,4 @@ jobs:
     - name: Migrate database command
       run: |
         export SINGLE_POD_NAME=$(kubectl get pod -l app=${{env.DEPLOYMENT_NAME}} -o jsonpath="{.items[0].metadata.name}")
-        kubectl exec -it $SINGLE_POD_NAME -- bash /app/migrate.sh
+        kubectl exec -it $SINGLE_POD_NAME -- sh /app/migrate.sh
