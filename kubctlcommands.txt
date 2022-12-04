@@ -1,4 +1,15 @@
-===========================
+============================
+============================
+comando para logar no doctl
+doctl auth init -t <token de credencial>
+============================
+comando para logar no cluster
+kubectl --kubeconfig=$Env:KUBECONFIG get nodes
+ou
+doctl kubernetes cluster kubeconfig save b7b66bff-28cd-4b18-958b-47b0a613c7bd #BUSCAR NO SITE DO digitalocean
+
+============================
+============================
 comando para verificar nodes
 kubectl get nodes
 ===========================
@@ -31,7 +42,8 @@ comando para acessar informações de um service em especifico
 Comando para criar secret que declara variaveis de ambientes sensiveis
 kubectl create secret generic <secret-name> --from-env-file=web/.env.prod
                       <type>                                  <path do .env>
-====================================================================
+=====================================
+===============================
 comando para listar secrets
 kubectl get secrets
 ====================================================================
@@ -43,3 +55,4 @@ kubectl delete secret <secret-name>
 =======================================================================
 comando para ver detavelhes da serviceaccount (serve para encontrar a configuração da secrets que precisa ser inserida no .yaml do projeto)
 kubectl get serviceaccount default -o YAML
+
