@@ -16,7 +16,7 @@ jobs:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: kub
       POSTGRES_HOST: localhost
-      POSTGRES_PORT: 5433
+      POSTGRES_PORT: 5432
       DB_IGNORE_SSL: "true"
     services:
       postgres_db:
@@ -26,9 +26,8 @@ jobs:
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
           POSTGRES_USER: ${{ env.POSTGRES_USER }}
           POSTGRES_HOST: ${{ env.POSTGRES_HOST }}
-          DB_IGNORE_SSL: ${{ env.DB_IGNORE_SSL }}
         ports:
-          - 5432:5433
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
