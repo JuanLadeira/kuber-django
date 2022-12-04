@@ -15,9 +15,12 @@ services:
     ports:
       - "8001:8020"
     volumes:
-      - staticfiles:/app/staticfiles/
+      - ./staticfiles:/app/staticfiles/
     
     command: sh -c "chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/entrypoint.sh"
+    networks:
+      app_net:  
+        ipv4_address: 192.168.0.2
   
   postgres_db:
     image: postgres
@@ -30,7 +33,10 @@ services:
     expose:
      - 5435
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - ./local/postgres_data:/var/lib/postgresql/data/
+    networks:
+      app_net:  
+        ipv4_address: 192.168.0.3
   
   redis_db:
     image: redis
@@ -38,13 +44,24 @@ services:
     expose:
       - 6387
     volumes:
-      - redis_data:/data
+      - ./local/redis_data:/var/lib/redis/data/
     entrypoint: redis-server --appendonly yes --port 6387
-
+    networks:
+      app_net:  
+        ipv4_address: 192.168.0.4
 
 volumes:
   postgres_data:
   redis_data:
   staticfiles:
 
+networks:
+  app_net:  
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.0.0/24"
+          gateway: 192.168.0.1
+
+    
  
