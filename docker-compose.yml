@@ -27,16 +27,16 @@ services:
     restart: always
     env_file:
       -  web/.env
-    command: -p 5435
+    command: -p 5433
     ports:
-     - "5435:5435"
+     - "5433:5433"
     expose:
-     - 5435
-    volumes:
-      - ./local/postgres_data:/var/lib/postgresql/data/
+     - 5433
     networks:
       app_net:  
-        ipv4_address: 192.168.0.3
+        ipv4_address: 192.168.0.6
+    volumes:
+      - ./local/postgres_db:/var/lib/postgres_db/data/
   
   redis_db:
     image: redis
@@ -51,7 +51,7 @@ services:
         ipv4_address: 192.168.0.4
 
 volumes:
-  postgres_data:
+  postgres_db:
   redis_data:
   staticfiles:
 
