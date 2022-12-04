@@ -38,3 +38,7 @@ export KUBECONFIG=~/Downloads/k8s-django-kubeconfig.yaml
 Comando para acessar variavel de ambiente no linux 
 echo $KUBECONFIG
 ==================================================================================
+
+
+========== ACESSAR KUBE APÓS ESTAR LOGADO NO PROVEDOR ==================
+kubectl --kubeconfig=$Env:KUBECONFIG get nodes

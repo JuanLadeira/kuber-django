@@ -10,4 +10,5 @@ RUN /opt/venv/bin/pip install pip --upgrade && \
     /opt/venv/bin/pip install -r requirements.txt && \
     chmod +x entrypoint.sh
 
+RUN useradd --create-home --shell /bin/bash juan
 CMD ["/app/entrypoint.sh"]
