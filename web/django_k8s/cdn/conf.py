@@ -1,6 +1,6 @@
 import os
 
-AWS_ACESS_KEY_ID= os.environ.get("AWS_ACESS_KEY_ID")
+AWS_ACCESS_KEY_ID= os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY=os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME="django-space-k8s-static"
 AWS_S3_ENDPOINT_URL="https://sfo3.digitaloceanspaces.com"
