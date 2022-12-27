@@ -3,11 +3,11 @@ Realizar Login pelo API Token através do comando:
 docker login registry.digitalocean.com
 =================================================
 Buildar a imagem do container localmente com o comando:
-docker build -t registry.digitalocean.com/k8s-django/django-k8s-web -f Dockerfile .
+docker build -t registry.digitalocean.com/djblogger-k8s/django-k8s-web -f Dockerfile .
                     <cluster-registry>
 =============================================================================
 Fazer o push da imagem do container para o container registry do digitalocean
-docker push registry.digitalocean.com/k8s-django/django-k8s-web --all-tags
+docker push registry.digitalocean.com/djblogger-k8s/django-k8s-web --all-tags
 =============================================================================
 ------------------------------------------------------------------------
 Naturally, for all these steps replace registry.digitalocean.com/cfe-k8s/ with your 
