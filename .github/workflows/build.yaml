@@ -4,13 +4,13 @@ on:
   workflow_call:
   workflow_dispatch:
   push:
-    branches: [ "master" ]
+    branches: [ "development" ]
   pull_request:
     branches: [ "master" ]
 
 jobs:
   test_django_job:
-    uses: JuanLadeira/kuber-django/.github/workflows/test_django.yaml@master
+    uses: JuanLadeira/djblogger/.github/workflows/test_django.yaml@master
   docker_build_job:
     runs-on: ubuntu-latest
     needs: [test_django_job]

@@ -7,7 +7,7 @@ python manage.py test
 EXAMPLE: docker build -f Dockerfile \ 
                 -t registry.gitialocean.com/<container-registry-name>/<image-name>:<tag> 
 REAL:
-    docker build -f Dockerfile \ 
+   ' docker build -f Dockerfile' \ 
     -t registry.digitalocean.com/k8s-django/django-k8s-web:latest \
     -t registry.digitalocean.com/k8s-django/django-k8s-web:v1 \
     .
